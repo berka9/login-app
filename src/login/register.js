@@ -28,11 +28,12 @@ class Register extends React.Component {
       input["password"] = "";
       input["confirmpassword"] = "";
     }
-    console.log("name: " + this.state.fname);
+    console.log(this.state);
+    /* console.log("name: " + this.state.fname);
     console.log("surname: " + this.state.surname);
     console.log("mail: " + this.state.mail);
     console.log("password: " + this.state.password);
-    console.log("confirmpassword" + this.state.confirmpassword);
+    console.log("confirmpassword" + this.state.confirmpassword);*/
     event.preventDefault();
   }
 
@@ -45,14 +46,14 @@ class Register extends React.Component {
   }
 
   validation() {
-    var msg = {};
+    var msg1 = {};
     if (this.state.input["password"] !== this.state.input["confirmpassword"]) {
-      msg["password"] = "Şifreler aynı değil❌";
+      msg1["password"] = "Şifreler aynı değil❌";
     } else {
-      msg["confirmpassword"] = "Şifreler aynı✅";
+      msg1["confirmpassword"] = "Şifreler aynı✅";
     }
     this.setState({
-      msg: msg,
+      msg: msg1,
     });
   }
 

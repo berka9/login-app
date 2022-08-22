@@ -16,8 +16,9 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log("Mail: " + this.state.mail);
-    console.log("password: " + this.state.password);
+    // console.log("Mail: " + this.state.mail);
+    // console.log("password: " + this.state.password);
+    console.log(this.state);
     event.preventDefault();
   }
 
