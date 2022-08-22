@@ -29,11 +29,7 @@ class Register extends React.Component {
       input["confirmpassword"] = "";
     }
     console.log(this.state);
-    /* console.log("name: " + this.state.fname);
-    console.log("surname: " + this.state.surname);
-    console.log("mail: " + this.state.mail);
-    console.log("password: " + this.state.password);
-    console.log("confirmpassword" + this.state.confirmpassword);*/
+
     event.preventDefault();
   }
 
