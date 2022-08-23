@@ -33,8 +33,9 @@
   display: block;
   width: 180px;
   height: 40px;
+  background-color: #1e59d0a3;
   border-radius: 10px;
-  border-color: #f1356d;
+  border: 0ch;
   transition: 0.4s;
 }
 .button:hover {
@@ -49,7 +50,7 @@
   margin: 0 auto 0 auto;
   display: table;
   display: block;
-  background-color: rgba(243, 243, 243, 0.892);
+  background-color: rgba(237, 233, 233, 0.892);
   border-radius: 5px;
   max-width: 180px;
   box-shadow: 0 16px 32px 0 rgba(110, 0, 81, 0.2),
@@ -62,11 +63,15 @@
   background-color: rgba(249, 246, 246, 0.892);
   padding: 5px;
   margin-bottom: 10px;
-  border-color: #f1356d;
+  border: 0ch;
 }
 
 .text {
-  color: #a02349;
+  color: #383637;
+  font-family: "Courier New", Courier, monospace;
+  font-size: x-large;
+  padding-left: 30px;
+  text-shadow: #f1356d;
 }
 
 .msgtext {

@@ -1,136 +1,147 @@
+import { useState } from "react";
 import React from "react";
+import "../index.css";
+import "../App";
 
-class Register extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fname: "",
-      surname: "",
-      mail: "",
-      password: "",
-      confirmpassword: "",
-      msg: {},
-      input: {},
-    };
-    this.pwdConfirm = this.pwdConfirm.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+function Register() {
+  const [form, setForm] = useState({
+    fname: "",
+    surname: "",
+    mail: "",
+    password: "",
+    confirmpassword: "",
+    msg: {},
+    msgsrg: {},
+    input: {},
+  });
 
-  handleChange(event) {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
-  }
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
-  handleSubmit(event) {
-    if (this.validation()) {
+  const handleSubmit = (event) => {
+    if (validation()) {
       var input = {};
       input["password"] = "";
       input["confirmpassword"] = "";
+      // input["surname"] = "";
     }
-    console.log(this.state);
+    console.log(form);
 
     event.preventDefault();
-  }
+  };
 
-  pwdConfirm(e) {
-    var inputpwd = this.state.input;
-    inputpwd[e.target.name] = e.target.value;
-    this.setState({
-      inputpwd,
-    });
-  }
+  const pwdConfirm = (event) => {
+    var inputpwd = form.input;
+    inputpwd[event.target.name] = event.target.value;
+  };
 
-  validation() {
+  // const nullTest = (event) => {
+  //   var nullTesting = form.input;
+  //   nullTesting[event.target.name] = event.target.value;
+  // };
+
+  const validation = (event) => {
     var msg1 = {};
-    if (this.state.input["password"] !== this.state.input["confirmpassword"]) {
-      msg1["password"] = "Şifreler aynı değil❌";
+    var msg2 = {};
+    if (form.input["password"] !== form.input["confirmpassword"]) {
+      msg1["password"] = "Şifreler aynı değil ❌";
     } else {
-      msg1["confirmpassword"] = "Şifreler aynı✅";
+      msg1["confirmpassword"] = "Şifreler aynı ✅";
     }
-    this.setState({
-      msg: msg1,
-    });
-  }
+    setForm({ ...form, msg: msg1 });
 
-  render() {
-    return (
-      <div className="divcenter">
-        <form onSubmit={this.handleSubmit}>
-          <h1 className="text">Register 👤</h1>
-          <div>
-            <input
-              className="textbox"
-              placeholder="İsim"
-              type="text"
-              name="fname"
-              maxLength={10}
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <input
-              className="textbox"
-              placeholder="Soyisim"
-              type="text"
-              name="surname"
-              maxLength={15}
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <input
-              className="textbox"
-              placeholder="Mail"
-              type="email"
-              name="mail"
-              maxLength={25}
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <input
-              className="textbox"
-              placeholder="Şifre"
-              type="password"
-              name="password"
-              maxLength={8}
-              minLength={6}
-              value={this.state.value}
-              onChange={(e) => {
-                this.handleChange(e);
-                this.pwdConfirm(e);
-              }}
-            />
-          </div>
-          <div>
-            <input
-              className="textbox"
-              placeholder="Şifreyi tekrar girin"
-              type="password"
-              name="confirmpassword"
-              maxLength={8}
-              minLength={6}
-              value={this.state.value}
-              onChange={(e) => {
-                this.handleChange(e);
-                this.pwdConfirm(e);
-              }}
-            />
-          </div>
+    // if ((form.input["surname"] = form.input[false])) {
+    //   msg2["null"] = "Soyisim boş bırakılamaz";
+    // } else {
+    //   msg2["true"] = "Giriş yapıldı";
+    // }
+    // setForm({ ...form, msgsrg: msg2 });
+  };
+
+  return (
+    <div className="divcenter">
+      <form onSubmit={handleSubmit}>
+        <h1 className="text">Register </h1>
+        <div>
+          <input
+            className="textbox"
+            placeholder="İsim"
+            type="text"
+            name="fname"
+            maxLength={10}
+            value={form.fname}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            className="textbox"
+            placeholder="Soyisim"
+            type="text"
+            name="surname"
+            maxLength={15}
+            value={form.surname}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            className="textbox"
+            placeholder="Mail"
+            type="email"
+            name="mail"
+            maxLength={25}
+            value={form.mail}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            className="textbox"
+            placeholder="Şifre"
+            type="password"
+            name="password"
+            maxLength={8}
+            minLength={6}
+            value={form.password}
+            onChange={(e) => {
+              handleChange(e);
+              pwdConfirm(e);
+            }}
+          />
+        </div>
+        <div>
+          <input
+            className="textbox"
+            placeholder="Şifreyi tekrar girin"
+            type="password"
+            name="confirmpassword"
+            maxLength={8}
+            minLength={6}
+            value={form.confirmpassword}
+            onChange={(e) => {
+              handleChange(e);
+              pwdConfirm(e);
+            }}
+          />
+        </div>
+        <strong>
+          <div className="msgtext">{form.msg.password}</div>
+          <div className="msgtexttrue">{form.msg.confirmpassword}</div>
+        </strong>
+        {/* <div>
           <strong>
-            <div className="msgtext">{this.state.msg.password}</div>
-            <div className="msgtexttrue">{this.state.msg.confirmpassword}</div>
+            <div>{form.msgsrg.null}</div>
+            <div>{form.msgsrg.true}</div>
           </strong>
-          <div>
-            <input className="button" type="submit" value="Kayıt Ol" />
-          </div>
-        </form>
-      </div>
-    );
-  }
+        </div> */}
+        <div>
+          <input className="button" type="submit" value="Kayıt Ol" />
+        </div>
+      </form>
+    </div>
+  );
 }
+
 export default Register;
